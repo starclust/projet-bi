@@ -1,35 +1,155 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Prédire le Délai de Paiement</title>
-    <style>
-        body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 20px; }
-        .container { background: white; padding: 20px; max-width: 400px; margin: auto; border-radius: 10px; box-shadow: 0px 0px 10px #ccc; }
-        h2 { text-align: center; }
-        input, button { width: 100%; padding: 10px; margin-top: 10px; }
-        .result { margin-top: 15px; text-align: center; font-size: 18px; color: #333; }
-    </style>
+  <meta charset="UTF-8">
+  <title>Predict Payment Delay</title>
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #4e73df;
+      --secondary: #2e59d9;
+      --bg: #f8f9fc;
+      --text: #5a5c69;
+      --light: #ffffff;
+      --radius: 12px;
+      --transition: 0.3s ease;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0; padding: 0;
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      background: var(--light);
+      border-radius: var(--radius);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      padding: 2rem;
+      max-width: 400px;
+      width: 100%;
+      transition: transform var(--transition);
+    }
+    .container:hover {
+      transform: translateY(-4px);
+    }
+
+    h2 {
+      font-weight: 600;
+      color: var(--primary);
+      text-align: center;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+    h2::before {
+      content: '🔍';
+      position: absolute;
+      left: -2rem;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      margin-top: 1rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    input {
+      margin-top: 0.5rem;
+      padding: 0.75rem 1rem;
+      border: 1px solid #d1d3e2;
+      border-radius: var(--radius);
+      font-size: 1rem;
+      transition: border-color var(--transition);
+    }
+    input:focus {
+      border-color: var(--primary);
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(78, 115, 223, 0.2);
+    }
+
+    button {
+      margin-top: 1.5rem;
+      padding: 0.75rem;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--light);
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: opacity var(--transition), transform var(--transition);
+    }
+    button:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+    }
+    button:active {
+      opacity: 0.8;
+      transform: translateY(0);
+    }
+
+    .result {
+      margin-top: 1.5rem;
+      padding: 0.75rem;
+      text-align: center;
+      font-size: 1.125rem;
+      color: var(--secondary);
+      border: 1px dashed var(--secondary);
+      border-radius: var(--radius);
+      background: rgba(46, 89, 217, 0.05);
+      animation: fadeIn 0.5s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0);  }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 1.5rem;
+      }
+      input, button {
+        font-size: 0.95rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h2>🔍 Prédire le Délai de Paiement</h2>
-        <form method="POST" action="/predict">
-            <label>Montant de la facture (€)</label>
-            <input type="number" name="InvoiceAmount" step="0.01" required>
+  <div class="container">
+    <h2>Predict Payment Delay</h2>
+    <form method="POST" action="/predict">
+      <label>Invoice Amount (€)</label>
+      <input type="number" name="InvoiceAmount" step="0.01" required>
 
-            <label>Remise proposée (€)</label>
-            <input type="number" name="DiscountOffered" step="0.01" required>
+      <label>Discount Offered (€)</label>
+      <input type="number" name="DiscountOffered" step="0.01" required>
 
-            <label>Remise utilisée (€)</label>
-            <input type="number" name="DiscountUsed" step="0.01" required>
+      <label>Discount Used (€)</label>
+      <input type="number" name="DiscountUsed" step="0.01" required>
 
-            <button type="submit">🔮 Prédire</button>
-        </form>
+      <button type="submit">🔮 Predict</button>
+    </form>
 
-        {% if prediction_text %}
-            <div class="result">{{ prediction_text }}</div>
-        {% endif %}
-    </div>
+    {% if prediction_text %}
+      <div class="result">{{ prediction_text }}</div>
+    {% endif %}
+  </div>
 </body>
 </html>

@@ -25,20 +25,25 @@ def predict():
             discount_offered = float(request.form.get('DiscountOffered', 0))
             discount_used = float(request.form.get('DiscountUsed', 0))
 
+        # 🔵 Normalisation simple pour rendre les valeurs raisonnables
+        invoice_amount /= 1000  # Diviser par 1000
+        discount_offered /= 100  # Diviser par 100
+        discount_used /= 100  # Diviser par 100
+
         # Préparer les features
         features = np.array([[invoice_amount, discount_offered, discount_used]])
 
-        # Prédire
+        # 🔵 Faire la prédiction
         prediction = model.predict(features)
-        result = max(round(float(prediction[0]), 2), 0)  # Le délai ne peut pas être négatif
+        result = max(round(float(prediction[0]), 2), 0)  # Pas de délai négatif
 
         if request.is_json:
             return jsonify({"prediction": result})
         else:
-            return render_template('index.html', prediction_text=f"Délai de paiement prédit : {result} jours")
+            return render_template('index.html', prediction_text=f"Predicted payment delay: {result} days")
 
     except Exception as e:
-        error_message = f"Erreur lors de la prédiction : {str(e)}"
+        error_message = f"Error during prediction: {str(e)}"
         if request.is_json:
             return jsonify({"error": error_message}), 400
         return render_template('index.html', prediction_text=error_message)
