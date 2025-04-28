@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Prédire le Délai de Paiement</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 20px; }
+        .container { background: white; padding: 20px; max-width: 400px; margin: auto; border-radius: 10px; box-shadow: 0px 0px 10px #ccc; }
+        h2 { text-align: center; }
+        input, button { width: 100%; padding: 10px; margin-top: 10px; }
+        .result { margin-top: 15px; text-align: center; font-size: 18px; color: #333; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>🔍 Prédire le Délai de Paiement</h2>
+        <form method="POST" action="/predict">
+            <label>Montant de la facture (€)</label>
+            <input type="number" name="InvoiceAmount" step="0.01" required>
+
+            <label>Remise proposée (€)</label>
+            <input type="number" name="DiscountOffered" step="0.01" required>
+
+            <label>Remise utilisée (€)</label>
+            <input type="number" name="DiscountUsed" step="0.01" required>
+
+            <button type="submit">🔮 Prédire</button>
+        </form>
+
+        {% if prediction_text %}
+            <div class="result">{{ prediction_text }}</div>
+        {% endif %}
+    </div>
+</body>
+</html>
