@@ -7,6 +7,9 @@ app = Flask(__name__)
 # Charger le modèle
 model = joblib.load('modele_delai_paiement.joblib')
 
+# Définir le pourcentage qu'on veut prendre
+PERCENTAGE = 0.30  # 30%
+
 @app.route('/')
 def home():
     return render_template('index.html')
@@ -25,22 +28,25 @@ def predict():
             discount_offered = float(request.form.get('DiscountOffered', 0))
             discount_used = float(request.form.get('DiscountUsed', 0))
 
-        # 🔵 Normalisation simple pour rendre les valeurs raisonnables
-        invoice_amount /= 1000  # Diviser par 1000
-        discount_offered /= 100  # Diviser par 100
-        discount_used /= 100  # Diviser par 100
+        # Normalisation
+        invoice_amount /= 1000
+        discount_offered /= 100
+        discount_used /= 100
 
         # Préparer les features
         features = np.array([[invoice_amount, discount_offered, discount_used]])
 
-        # 🔵 Faire la prédiction
+        # Prédire
         prediction = model.predict(features)
-        result = max(round(float(prediction[0]), 2), 0)  # Pas de délai négatif
+        days = max(round(float(prediction[0]), 0), 0)  # Résultat en jours
+        months = max(int(days / 30), 0)  # Transformer en mois entiers
 
+       
+        adjusted_months = max(int(months * PERCENTAGE), 1) 
         if request.is_json:
-            return jsonify({"prediction": result})
+            return jsonify({"predicted_payment_delay_months": adjusted_months})
         else:
-            return render_template('index.html', prediction_text=f"Predicted payment delay: {result} days")
+            return render_template('index.html', prediction_text=f"Predicted payment delay: {adjusted_months} months")
 
     except Exception as e:
         error_message = f"Error during prediction: {str(e)}"
