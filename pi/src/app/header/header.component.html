@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Header Example</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    /* Custom Styles to change the navbar background */
+    .navbar {
+      background-color: transparent; /* Override Bootstrap's default */
+    }
+
+    /* Example button styles (you can customize these) */
+    .custom-button {
+      border: 1px solid #6c757d;
+      /* Bootstrap secondary color */
+      padding: 0.5rem 1rem;
+      background-color: white;
+      color: #212529;
+      /* Bootstrap dark color */
+      font-weight: bold;
+      border-radius: 0.5rem;
+      box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.15);
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .custom-button:hover {
+      background-color: #6c757d;
+      color: white;
+    }
+
+    .custom-button.danger {
+      border-color: #dc3545;
+      /* Bootstrap danger color */
+      color: #dc3545;
+    }
+
+    .custom-button.danger:hover {
+      background-color: #dc3545;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <nav class="container navbar navbar-expand-lg">
+      <div class="container">
+
+        <!-- MENU DE NAVIGATION -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul
+            class="navbar-nav d-flex justify-content-center align-items-center gap-lg-4 gap-md-2 gap-sm-2 gap-2 mb-2 mb-lg-0">
+
+            <!-- HOME -->
+            <li class="nav-item">
+              <a class="nav-link" href="index-2.html">Home</a>
+            </li>
+
+            <!-- ABOUT -->
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">About</a>
+            </li>
+
+            <!-- DROPDOWN PAGES -->
+            <li class="dropdown">
+              <a class="nav-link active" href="#">Pages <i class="fa-sharp fa-solid fa-sort-down"></i></a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="gallery.html">Gallery</a></li>
+                <li><a class="dropdown-item" href="pricing.html">Pricing</a></li>
+                <li><a class="dropdown-item" href="faqs.html">FAQS</a></li>
+                <li><a class="dropdown-item" href="roomdetail.html">Room Details</a></li>
+                <li><a class="dropdown-item active" href="blogs.html">Blogs</a></li>
+                <li><a class="dropdown-item" href="singlepost.html">Single Post</a></li>
+                <li><a class="dropdown-item" href="services.html">Services</a></li>
+                <li><a class="dropdown-item" href="contact.html">Contact Us</a></li>
+                <li><a class="dropdown-item" href="404.html">404</a></li>
+                <li><a class="dropdown-item" href="coming.html">Coming Soon</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+       <!-- BOUTONS D'ACTION -->
+<div class="d-flex gap-3">
+    <button class="custom-button" routerLink="/home">
+        Home
+    </button>
+  
+    <button class="custom-button danger" routerLink="/dashboard">
+      Manager Space
+    </button>
+  
+    <button class="custom-button" routerLink="/aboutus">
+      About Us
+    </button>
+  </div>
+  
+        <!-- MENU MOBILE -->
+        <button class="open-aside" onclick="open_aside()" type="button">
+          <span></span>
+          <span></span>
+        </button>
+
+      </div>
+    </nav>
+
+    <!-- SIDEBAR RESPONSIVE -->
+    <aside>
+      <div id="mySidenav" class="right-sidbar">
+        <div class="side-nav-logo d-flex justify-content-between align-items-center ps-2 pe-1 nav-logo">
+          <figure class="navbar-brand">
+            <a href="index-2.html">
+              <img src="assets/images/logo.svg" alt="menulogo">
+            </a>
+          </figure>
+          <button class="fa-solid fa-xmark" onclick="close_aside()"> </button>
+        </div>
+        <ul>
+          <li class="nav-item"><a href="index-2.html">Home</a></li>
+          <li class="nav-item"><a href="about.html">About</a></li>
+          <li class="nav-item"><a href="rooms.html">Rooms</a></li>
+          <li class="nav-item">
+            <div class="d-flex align-items-center justify-content-between" id="slid-btn">
+              <button class="a-slid page-btn active">Pages</button>
+              <i class="fa-solid fa-caret-down pe-2"></i>
+            </div>
+            <ul id="slid-drop">
+              <li><a href="gallery.html">Gallery</a></li>
+              <li><a href="pricing.html">Pricing</a></li>
+              <li><a href="faqs.html">FAQS</a></li>
+              <li><a href="roomdetail.html">Room Details</a></li>
+              <li><a class="active" href="blogs.html">Blog</a></li>
+              <li><a href="singlepost.html">Single Post</a></li>
+              <li><a href="services.html">Services</a></li>
+              <li><a href="contact.html">Contact Us</a></li>
+              <li><a href="404.html">404</a></li>
+              <li><a href="coming.html">Coming Soon</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </aside>
+  </header>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function open_aside() {
+      document.getElementById("mySidenav").style.width = "300px";
+    }
+
+    function close_aside() {
+      document.getElementById("mySidenav").style.width = "0";
+    }
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FICO Monoprix</title>
+
+  <!-- Tailwind & Font Awesome -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" crossorigin="anonymous" />
+
+  <style>
+    :root {
+      --primary-red: #C8102E;
+      --secondary-red: #A40D26;
+      --fico-blue: #0074B7;
+      --light-gray: #F2F2F2;
+      --dark-gray: #333;
+      --white: #FFFFFF;
+      --off-white: #F1CCBC;
+    }
+
+    .fadeInSlow {
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .elegant-heading {
+      font-family: ui-serif, Georgia, "Times New Roman", serif;
+      font-weight: 700;
+      letter-spacing: 0.025em;
+    }
+
+    .elegant-body {
+      font-family: ui-sans-serif, system-ui, "Segoe UI", Roboto, sans-serif;
+      font-weight: 400;
+      letter-spacing: 0.015em;
+    }
+
+    .hero-video-container {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .hero-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .contact-info {
+      text-align: center;
+      padding: 2rem;
+      background-color: var(--light-gray);
+      border-radius: 1rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .contact-info i {
+      color: var(--fico-blue);
+    }
+  </style>
+</head>
+
+<body class="min-h-screen flex flex-col text-black bg-[var(--off-white)]">
+
+<!-- HERO -->
+<section class="relative flex items-center justify-center min-h-[80vh] px-10 py-20 bg-[var(--light-gray)]">
+  <!-- Image de fond -->
+  <div class="hero-video-container">
+    <img src="assets/images/home/dashboard.png" alt="Dashboard" class="hero-video" />
+    <!-- Overlay sombre -->
+    <div class="absolute inset-0 bg-black opacity-40"></div>
+  </div>
+
+  <!-- Contenu texte -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-10 w-full max-w-7xl z-10 text-white">
+    <div class="space-y-6">
+      <h1 class="text-5xl md:text-7xl font-bold leading-tight text-white">
+        Predict. Control.<br><span class="text-gray-200">Optimize Costs</span>
+      </h1>
+      <p class="text-lg text-gray-100 elegant-body max-w-md">
+        Welcome to <span class="font-semibold text-white">FICO Monoprix</span>, the intelligent dashboard for financial performance and dispute management.
+      </p>
+    </div>
+    <div></div>
+  </div>
+</section>
+
+
+
+  <!-- INSIGHT SECTION -->
+  <section class="relative flex flex-col md:flex-row items-center justify-center w-full px-8 md:px-24 py-28 gap-16 bg-white overflow-hidden">
+    <video autoplay muted loop class="absolute inset-0 w-full h-full object-cover z-0">
+      <source src="https://ak.picdn.net/shutterstock/videos/1072801884/preview/stock-footage-abstract-background-of-colorful-dynamic-wave-lines-3d-render-of-stylish-flow-gradient-for-presentation.webm" type="video/webm" />
+    </video>
+    <div class="absolute inset-0 bg-white opacity-40 z-0"></div>
+
+    <div class="z-10 flex justify-center">
+      <img src="assets/images/home/Monoprix.png" alt="Insight" class="w-[600px] h-[600px] rounded-full object-cover shadow-2xl" />
+    </div>
+    <div class="z-10 text-center md:text-left space-y-6">
+      <h2 class="text-4xl md:text-5xl font-bold elegant-heading text-[var(--primary-red)]">Data-Driven Negotiation</h2>
+      <p class="text-lg elegant-body text-[var(--dark-gray)] max-w-md">
+        Visualize supplier discounts, analyze disputes, and boost negotiation opportunities with AI recommendations.
+      </p>
+    </div>
+  </section>
+
+
+
+  <!-- CONTACT -->
+  <section class="mt-16 px-8">
+    <div class="contact-info">
+      <h3 class="text-2xl font-bold elegant-heading mb-4">Contact Information</h3>
+      <p class="elegant-body"><i class="fas fa-map-marker-alt mr-2"></i> Paris, France</p>
+      <p class="elegant-body"><i class="fas fa-envelope mr-2"></i> contact@monoprix.com</p>
+      <p class="elegant-body"><i class="fas fa-phone mr-2"></i> +33 6 12 34 56 78</p>
+    </div>
+  </section>
+
+</body>
+
+</html>

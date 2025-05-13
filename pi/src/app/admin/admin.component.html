@@ -1,0 +1,50 @@
+<div class="flex h-screen bg-[#f9f9f9] text-[#333] font-sans">
+    <!-- SIDEBAR CEO -->
+    <aside class="w-80 bg-white border-r border-gray-200 shadow-md p-6 space-y-10">
+      <div class="text-3xl font-bold text-[#c8102e] text-center">CEO Dashboard</div>
+  
+      <!-- Rapport Power BI -->
+      <div>
+        <h3 class="text-xs font-semibold text-gray-500 uppercase mb-3 tracking-wide">Power BI Report</h3>
+        <button 
+          (click)="setView('powerbi')"
+          class="flex items-center gap-3 w-full text-left px-5 py-3 rounded-lg bg-[#f1f1f1] hover:bg-[#e4e4e4]">
+          <i class="bi bi-bar-chart text-[#c8102e] text-xl"></i>
+          <span class="font-medium">Full Report</span>
+        </button>
+      </div>
+  
+      <!-- Prédictions -->
+      <div>
+        <h3 class="text-xs font-semibold text-gray-500 uppercase mb-3 tracking-wide">Predictions</h3>
+        <ng-container *ngFor="let prediction of predictions">
+          <button 
+            (click)="setView(prediction.key)"
+            class="flex items-center gap-3 w-full text-left px-5 py-3 rounded-lg bg-[#f1f1f1] hover:bg-[#e4e4e4] mb-2">
+            <i class="bi bi-graph-up-arrow text-[#c8102e] text-xl"></i>
+            <span class="font-medium">{{ prediction.label }}</span>
+          </button>
+        </ng-container>
+      </div>
+  
+      <div class="pt-10 border-t border-gray-200 text-center">
+        <p class="text-xs text-gray-500">Connected as <strong>CEO</strong></p>
+      </div>
+    </aside>
+  
+    <!-- CONTENU PRINCIPAL -->
+    <main class="flex-1 p-6 overflow-y-auto">
+      <div class="h-[85vh] bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden">
+        <iframe
+          *ngIf="activeUrl"
+          width="100%"
+          height="100%"
+          [src]="activeUrl"
+          frameborder="0"
+          allowfullscreen
+          class="w-full h-full"
+        ></iframe>
+      </div>
+    </main>
+  </div>
+  
